@@ -1,0 +1,129 @@
+.body{
+    width: 1920px;
+    height: 1080px;
+    margin: 32px;
+}
+
+.title{
+    top : 40px;
+    left : 80px;
+    width: 192px;
+    height: 32px;
+    margin-bottom: 40px;
+    font-size: 32px;
+    font: Arial;
+    color: #011640;
+    text-shadow : 0px, 1px, 1px;
+}
+
+.line{
+    margin-top : 40;
+    margin-bottom : 40;
+    border : 0.5px solid;
+    border-Color : #011640;
+}
+
+.inputGroup{
+    height: 824px;
+    width: 1464px;
+    margin-left: 288px;
+}
+
+.dropDownContent{
+    height: 48px;
+    width: 176px;
+    background-color: #ffffff;
+    color: #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+}
+
+.dropDownContent:hover{
+    height: 48px;
+    width: 176px;
+    background-color: #011640;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+}
+
+.dropDownContent:active{
+    height: 48px;
+    width: 176px;
+    background-color: #011640;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+}
+
+.buttonContent{
+    height: 48px;
+    width: 176px;
+    background-color:  #011640;;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+}
+
+.buttonContent:hover{
+    height: 48px;
+    width: 176px;
+    background-color:  #011640;;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+}
+
+.buttonContent:active{
+    height: 48px;
+    width: 176px;
+    background-color:  #011640;;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+}
+
+.inputTextGroup{
+    width: 460px;
+    height: 48px;
+}
+
+.inputText{
+    width: 340px;
+    height: 48px;
+    border: 1px solid #011640;
+    border-radius: 28px;
+}
+
+.inputButton{
+    height: 48px;
+    width: 99px;
+    background-color:  #011640;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+}
+
+.tableTextArea{
+    height: 720px;
+    width: 1344px;
+    margin-top: 16px;
+}
+
+.trContent{
+    
+}
