@@ -1,5 +1,4 @@
 .body{
-    width: 1920px;
     height: 1080px;
     margin: 32px;
 }
@@ -26,7 +25,6 @@
 .inputGroup{
     height: 824px;
     width: 1464px;
-    margin-left: 288px;
 }
 
 .dropDownContent{
@@ -43,7 +41,6 @@
 
 .dropDownContent:hover{
     height: 48px;
-    width: 176px;
     background-color: #011640;
     color: #ffffff;
     border: 1px solid #011640;
@@ -53,7 +50,6 @@
 
 .dropDownContent:active{
     height: 48px;
-    width: 176px;
     background-color: #011640;
     color: #ffffff;
     border: 1px solid #011640;
@@ -63,7 +59,7 @@
 
 .buttonContent{
     height: 48px;
-    width: 176px;
+    width: 156px;
     background-color:  #011640;;
     color: #ffffff;
     border: 1px solid #011640;
@@ -75,7 +71,6 @@
 
 .buttonContent:hover{
     height: 48px;
-    width: 176px;
     background-color:  #011640;;
     color: #ffffff;
     border: 1px solid #011640;
@@ -87,7 +82,6 @@
 
 .buttonContent:active{
     height: 48px;
-    width: 176px;
     background-color:  #011640;;
     color: #ffffff;
     border: 1px solid #011640;
@@ -98,7 +92,7 @@
 }
 
 .inputTextGroup{
-    width: 460px;
+    width: 365px;
     height: 48px;
 }
 
@@ -125,5 +119,15 @@
 }
 
 .trContent{
-    
+    height: 40px;
+    width: 1344px;
+}
+
+.checkBoxContent{
+    height: 30px;
+    width: 30px;
+}
+
+.toContent{
+    color: #011640;
 }
