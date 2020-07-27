@@ -29,7 +29,7 @@ export default class ExpenseMangament extends React.Component {
   };
 
   componentDidMount() {
-    let DATA = require("./data/station.json");
+    let DATA = require("./data/member.json");
     DATA.forEach((item) => {
       item.isCheck = "false";
     });
@@ -42,7 +42,7 @@ export default class ExpenseMangament extends React.Component {
   runSelect = () => {
     this.state.ALLDATA = this.state.DEFAULTDATA;
     var temp = this.state.ALLDATA.filter((item) => {
-      return item.station_name.toUpperCase().includes(this.state.searchText);
+      return item.member_name.toUpperCase().includes(this.state.searchText);
     });
 
     this.setState({
@@ -56,7 +56,7 @@ export default class ExpenseMangament extends React.Component {
       this.state.printList = [];
       this.state.ALLDATA.forEach((i) => {
         i.checked = true;
-        this.state.printList.push(i.station_cd);
+        this.state.printList.push(i.member_cd);
       });
       this.state.isAllCheck = true;
     } else {
@@ -76,10 +76,10 @@ export default class ExpenseMangament extends React.Component {
   checkThis(item) {
     item.checked = !item.checked;
     if (item.checked == true) {
-      this.state.printList.push(item.station_cd);
+      this.state.printList.push(item.member_cd);
     } else {
       this.state.printList.map((x) => {
-        if (x === item.station_cd) {
+        if (x === item.member_cd) {
           this.state.printList.splice(this.state.printList.indexOf(x), 1);
         }
       });
@@ -103,30 +103,46 @@ export default class ExpenseMangament extends React.Component {
       printList: this.state.printList,
       ALLDATA: this.state.ALLDATA,
       isAllCheck: this.state.isAllCheck,
+      
     });
+    
   }
 
   runPrint = () => {
     alert(this.state.printList);
   };
 
-  reportApplicationMsg = () => {
-    fetch("http://127.0.0.1:3001/pushMessage", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        alert(data.msg);
-      });
-  };
+    //changeSort変数を初期化する
+  
+  //申請状況でソートする関数
+  changeCheckSort(){
+
+    var checkNumber=0;
+    console.log(checkNumber);
+
+  }
+
+  //社員IDでソートする関数
+　changeIdSort(){
+
+  var checkNumber=1;
+  console.log(checkNumber);
+
+  }
+
+  //社員名でソートする関数
+　changeNameSort(){
+
+  var checkNumber=2;
+  console.log(checkNumber);
+
+  }
   
   render() {
+
+    //ソート用関数に渡す引数用の変数
     let _self = this;
+
     return (
       <>
         <div className="body">
@@ -140,51 +156,36 @@ export default class ExpenseMangament extends React.Component {
           </div>
 
           <div className="inputGroup">
-            <Dropdown>
-              <Dropdown.Toggle
-                className = "dropDownContent"
+            
+            {/* 申請状況でソートするためのもの */}
+              <button
+                className = "buttonContent"
                 variant="outline-secondary"
-                id="dropdown-basic"
+                //クリックされたら関数呼び出し
+                onClick={this.changeCheckSort}
               >
-                対象月
-              </Dropdown.Toggle>
+                申請状況
+              </button>
 
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown>
-              <Dropdown.Toggle
-                className = "dropDownContent"
+              {/* IDでソートするためのボタン */}
+              <Button
+                className = "buttonContent"
                 variant="outline-secondary"
-                id="dropdown-basic"
+                //クリックされたら関数呼び出し
+                onClick={this.changeIdSort}
               >
-                申請状態
-              </Dropdown.Toggle>
+                ID
+              </Button>
 
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-2">未申請</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">申請済み</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown>
-              <Dropdown.Toggle
-                className = "dropDownContent"
+              {/* 社員名でソートするためのボタン */}
+              <Button
+                className = "buttonContent"
                 variant="outline-secondary"
-                id="dropdown-basic"
+                //クリックされたら関数呼び出し
+                onClick={this.changeNameSort}
               >
-                確認状態
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-2">未確認</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">確認済み</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+                社員名
+              </Button>
 
             <OverlayTrigger
                 key={"top"}
@@ -225,7 +226,7 @@ export default class ExpenseMangament extends React.Component {
             <InputGroup className="inputTextGroup">
               <FormControl
                 className="inputText"
-                placeholder="search station_name"
+                placeholder="search member_name"
                 onChange={this.handleSearchText}
               />
               <InputGroup.Append>
@@ -247,60 +248,56 @@ export default class ExpenseMangament extends React.Component {
                         onChange={_self.isAllCheck.bind(_self)}
                         checked={this.state.isAllCheck || ""}
                       />
+
                     </td>
-                    <td>station_cd</td>
-                    <td>station_g_cd</td>
-                    <td>station_name</td>
-                    <td>station_name_k</td>
-                    <td>station_name_r</td>
-                    <td>line_cd</td>
-                    <td>pref_cd</td>
-                    <td>post</td>
-                    <td>lon</td>
-                    <td>lat</td>
-                    <td>open_ymd</td>
-                    <td>close_ymd</td>
-                    <td>e_status</td>
-                    <td>e_sort</td>
+                    <td>ID</td>
+                    <td>申請状況</td>
+                    <td>申請状況</td>
+                    <td>更新日</td>
+                    <td>駅区間</td>
+                    <td>定期期間</td>
                   </tr>
+
+                  
                   {this.state.ALLDATA.length
                     ? this.state.ALLDATA.map(function (item, index) {
-                        return (
-                          <tr
-                            className="trContent" 
-                            key={index}
-                          >
-                            <td>
-                              <input
-                                className="checkBoxContent"
-                                type="checkbox"
-                                onChange={_self.checkThis.bind(_self, item)}
-                                checked={item.checked || ""}
-                              />
-                            </td>
-                            <td>{item.station_cd}</td>
-                            <td>{item.station_g_cd}</td>
-                            <td>{item.station_name}</td>
-                            <td>{item.station_name_k}</td>
-                            <td>{item.station_name_r}</td>
-                            <td>{item.line_cd}</td>
-                            <td>{item.pref_cd}</td>
-                            <td>{item.post}</td>
-                            <td>{item.lon}</td>
-                            <td>{item.lat}</td>
-                            <td>{item.open_ymd}</td>
-                            <td>{item.close_ymd}</td>
-                            <td>{item.e_status}</td>
-                            <td>{item.e_sort}</td>
-                          </tr>
-                        );
+
+                      //申請状況を代入
+                      let isColorCheck = item.申請状況;
+                      var fontColor = "";
+                      if(isColorCheck === "未"){
+                        fontColor = 'red';
+                      }
+
+                      console.log(fontColor);
+                      //未申請の人だけを赤くする
+                      return (
+                        <tr
+                        style = {{ color: fontColor }}
+                        key={index}
+                        >
+                          <td>
+                            <input
+                              className="checkBoxContent"
+                              type="checkbox"
+                              onChange={_self.checkThis.bind(_self, item)}
+                              checked={item.checked || ""}
+                            />
+                          </td>
+                          <td>{item.id}</td>
+                          <td>{item.申請状況}</td>
+                          <td>{item.社員名}</td>
+                          <td>{item.更新日}</td>
+                          <td>{item.駅区間}</td>
+                          <td>{item.定期期間}</td>
+                        </tr>
+                      );
                       })
                     : null}
                 </tbody>
               </Table>
             </div>
           </div>
-
           <Row style={{ backgroundColor: "#FFFFFF" }}>もし区切りあったら</Row>
         </div>
       </>
