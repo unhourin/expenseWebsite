@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import {
   Row,
   Col,
@@ -9,6 +9,7 @@ import {
   InputGroup,
   FormControl,
   Tooltip,
+  BreadcrumbItem,
 } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -103,7 +104,6 @@ export default class ExpenseMangament extends React.Component {
       printList: this.state.printList,
       ALLDATA: this.state.ALLDATA,
       isAllCheck: this.state.isAllCheck,
-      
     });
     
   }
@@ -111,32 +111,6 @@ export default class ExpenseMangament extends React.Component {
   runPrint = () => {
     alert(this.state.printList);
   };
-
-    //changeSort変数を初期化する
-  
-  //申請状況でソートする関数
-  changeCheckSort(){
-
-    var checkNumber=0;
-    console.log(checkNumber);
-
-  }
-
-  //社員IDでソートする関数
-　changeIdSort(){
-
-  var checkNumber=1;
-  console.log(checkNumber);
-
-  }
-
-  //社員名でソートする関数
-　changeNameSort(){
-
-  var checkNumber=2;
-  console.log(checkNumber);
-
-  }
   
   render() {
 
@@ -156,36 +130,6 @@ export default class ExpenseMangament extends React.Component {
           </div>
 
           <div className="inputGroup">
-            
-            {/* 申請状況でソートするためのもの */}
-              <button
-                className = "buttonContent"
-                variant="outline-secondary"
-                //クリックされたら関数呼び出し
-                onClick={this.changeCheckSort}
-              >
-                申請状況
-              </button>
-
-              {/* IDでソートするためのボタン */}
-              <Button
-                className = "buttonContent"
-                variant="outline-secondary"
-                //クリックされたら関数呼び出し
-                onClick={this.changeIdSort}
-              >
-                ID
-              </Button>
-
-              {/* 社員名でソートするためのボタン */}
-              <Button
-                className = "buttonContent"
-                variant="outline-secondary"
-                //クリックされたら関数呼び出し
-                onClick={this.changeNameSort}
-              >
-                社員名
-              </Button>
 
             <OverlayTrigger
                 key={"top"}
@@ -217,7 +161,7 @@ export default class ExpenseMangament extends React.Component {
               <Button
                 className = "buttonContent"
                 variant="outline-secondary"
-                onClick={this.runPrint}
+                onChange={this.handleSearchText}
               >
                 チェック済印刷
               </Button>
@@ -258,7 +202,6 @@ export default class ExpenseMangament extends React.Component {
                     <td>定期期間</td>
                   </tr>
 
-                  
                   {this.state.ALLDATA.length
                     ? this.state.ALLDATA.map(function (item, index) {
 
@@ -269,7 +212,6 @@ export default class ExpenseMangament extends React.Component {
                         fontColor = 'red';
                       }
 
-                      console.log(fontColor);
                       //未申請の人だけを赤くする
                       return (
                         <tr
@@ -292,7 +234,10 @@ export default class ExpenseMangament extends React.Component {
                           <td>{item.定期期間}</td>
                         </tr>
                       );
-                      })
+                     {
+                      } 
+                    }
+                  )
                     : null}
                 </tbody>
               </Table>
