@@ -24,9 +24,26 @@ export default class ExpenseMangament extends React.Component {
   };
 
   handleSearchText = (text) => {
-    this.setState({
-      searchText: text.target.value,
-    });
+
+        //検索するデータを用意
+        let DATA = this.state.DEFAULTDATA
+
+        var temp = DATA.filter((item) => {
+          return item.社員名.includes(text.target.value);
+        });
+    
+        this.setState({ALLDATA:temp})
+    // //検索するデータを用意
+    // let DATA = this.state.DEFAULTDATA
+    // //検索後必要なデータを入れる配列を用意
+    // let newData = []
+    // DATA.map(v=>{
+    //   //バリューの中に必要なものがった場合
+    //   if(v.社員名.includes(text.target.value)){
+    //     newData.push(v)
+    //   }
+    // })
+    // this.setState({ALLDATA:newData})
   };
 
   componentDidMount() {
@@ -40,17 +57,17 @@ export default class ExpenseMangament extends React.Component {
     });
   }
 
-  runSelect = () => {
-    this.state.ALLDATA = this.state.DEFAULTDATA;
-    var temp = this.state.ALLDATA.filter((item) => {
-      return item.member_name.toUpperCase().includes(this.state.searchText);
-    });
+  // runSelect = () => {
+  //   this.state.ALLDATA = this.state.DEFAULTDATA;
+  //   var temp = this.state.ALLDATA.filter((item) => {
+  //     return item.社員名.toUpperCase().includes(this.state.searchText);
+  //   });
 
-    this.setState({
-      // 画面更新
-      ALLDATA: temp,
-    });
-  };
+  //   this.setState({
+  //     // 画面更新
+  //     ALLDATA: temp,
+  //   });
+  // };
 
   isAllCheck() {
     if (this.state.isAllCheck === false) {
@@ -76,7 +93,7 @@ export default class ExpenseMangament extends React.Component {
 
   checkThis(item) {
     item.checked = !item.checked;
-    if (item.checked == true) {
+    if (item.checked === true) {
       this.state.printList.push(item.member_cd);
     } else {
       this.state.printList.map((x) => {
@@ -116,7 +133,7 @@ export default class ExpenseMangament extends React.Component {
 
     //ソート用関数に渡す引数用の変数
     let _self = this;
-
+    console.log(Item);
     return (
       <>
         <div className="body">
@@ -131,6 +148,60 @@ export default class ExpenseMangament extends React.Component {
 
           <div className="inputGroup">
 
+          <Dropdown>
+            <Dropdown.Toggle className = "dropDownContent">
+              申請状況
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {/* 未申請の人をうえに並べる */}
+              <Dropdown.Item herg="#/action-2" onClick={() =>{
+                
+                //新しい配列を用意する
+                let Uline_cd = []
+                //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
+                this.state.ALLDATA.map((v, i) => {
+                  if(v.申請状況 === "未"){
+                    Uline_cd.push(v)
+                  }
+                });
+                //setStateでALLDATAの中身を書き換える
+                this.setState({ ALLDATA: Uline_cd })
+                  this.state.ALLDATA.map((v, i) => {
+                  if(v.申請状況 === "済"){
+                    Uline_cd.push(v)
+                  }
+                  });
+                  this.setState({ ALLDATA: Uline_cd })
+                
+              }}>未申請</Dropdown.Item>
+
+              {/* 　 申請済の人を上に並べる */}
+　　　　　　　　　<Dropdown.Item herg="#/action-2" onClick={() =>{
+                
+                //新しい配列を用意する
+                let Dline_cd = []
+                //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
+                this.state.ALLDATA.map((v, i) => {
+                  if(v.申請状況 === "済"){
+                    Dline_cd.push(v)
+                  }
+                });
+                //setStateでALLDATAの中身を書き換える
+                this.setState({ ALLDATA: Dline_cd })
+
+                  this.state.ALLDATA.map((v, i) => {
+                  if(v.申請状況 === "未"){
+                    Dline_cd.push(v)
+
+                  }
+                  });
+                  this.setState({ ALLDATA: Dline_cd })
+                
+              }}>申請済</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          
             <OverlayTrigger
                 key={"top"}
                 placement={"top"}
@@ -170,14 +241,14 @@ export default class ExpenseMangament extends React.Component {
             <InputGroup className="inputTextGroup">
               <FormControl
                 className="inputText"
-                placeholder="search member_name"
+                placeholder="search 社員名"
                 onChange={this.handleSearchText}
               />
-              <InputGroup.Append>
+              {/* <InputGroup.Append>
                 <Button variant="outline-secondary" onClick={this.runSelect} className="inputButton">
                   検索
                 </Button>
-              </InputGroup.Append>
+              </InputGroup.Append> */}
             </InputGroup>
 
             <div className="tableTextArea">
@@ -247,5 +318,6 @@ export default class ExpenseMangament extends React.Component {
         </div>
       </>
     );
+    
   }
 }
