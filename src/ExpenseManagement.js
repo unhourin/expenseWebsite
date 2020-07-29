@@ -24,21 +24,20 @@ export default class ExpenseMangament extends React.Component {
   };
 
   handleSearchText = (text) => {
+    //検索するデータを用意
+    let DATA = this.state.DEFAULTDATA;
 
-        //検索するデータを用意
-        let DATA = this.state.DEFAULTDATA
-
-        var temp = DATA.filter((item) => {
-          return item.社員名.includes(text.target.value);
-        });
-        this.setState({ALLDATA:temp})
+    var temp = DATA.filter((item) => {
+      return item.EmployeeName.includes(text.target.value);
+    });
+    this.setState({ ALLDATA: temp });
     // //検索するデータを用意
     // let DATA = this.state.DEFAULTDATA
     // //検索後必要なデータを入れる配列を用意
     // let newData = []
     // DATA.map(v=>{
     //   //バリューの中に必要なものがった場合
-    //   if(v.社員名.includes(text.target.value)){
+    //   if(v.EmployeeName.includes(text.target.value)){
     //     newData.push(v)
     //   }
     // })
@@ -59,7 +58,7 @@ export default class ExpenseMangament extends React.Component {
   // runSelect = () => {
   //   this.state.ALLDATA = this.state.DEFAULTDATA;
   //   var temp = this.state.ALLDATA.filter((item) => {
-  //     return item.社員名.toUpperCase().includes(this.state.searchText);
+  //     return item.EmployeeName.toUpperCase().includes(this.state.searchText);
   //   });
 
   //   this.setState({
@@ -121,21 +120,18 @@ export default class ExpenseMangament extends React.Component {
       ALLDATA: this.state.ALLDATA,
       isAllCheck: this.state.isAllCheck,
     });
-    
   }
 
   runPrint = () => {
     alert(this.state.printList);
   };
-  
-  render() {
 
+  render() {
     //ソート用関数に渡す引数用の変数
     let _self = this;
     return (
       <>
         <div className="body">
-
           <div>
             <p className="title">社員一覧画面</p>
           </div>
@@ -145,103 +141,154 @@ export default class ExpenseMangament extends React.Component {
           </div>
 
           <div className="inputGroup">
+            <Dropdown>
+              <Dropdown.Toggle className="dropDownContent">
+                並び替え
+              </Dropdown.Toggle>
 
-          <Dropdown>
-            <Dropdown.Toggle className = "dropDownContent">
-              並び替え
-            </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {/* 未申請の人をうえに並べる */}
+                <Dropdown.Item
+                  herg="#/action-2"
+                  onClick={() => {
+                    //新しい配列を用意する
+                    let Uline_cd = [];
 
-            <Dropdown.Menu>
-              {/* 未申請の人をうえに並べる */}
-              <Dropdown.Item herg="#/action-2" onClick={() =>{
+                    //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
+                    this.state.ALLDATA.map((v, i) => {
+                      if (v.Situation === "未") {
+                        Uline_cd.push(v);
+                      }
+                    });
+                    //setStateでALLDATAの中身を書き換える
+                    this.setState({ ALLDATA: Uline_cd });
+                    this.state.ALLDATA.map((v, i) => {
+                      if (v.Situation === "済") {
+                        Uline_cd.push(v);
+                      }
+                    });
+                    this.setState({ ALLDATA: Uline_cd });
+                  }}
+                >
+                  未申請
+                </Dropdown.Item>
+                {/* 　 申請済の人を上に並べる */}
                 
-                //新しい配列を用意する
-                let Uline_cd = []
-                
-                //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
-                this.state.ALLDATA.map((v, i) => {
-                  if(v.申請状況 === "未"){
-                    Uline_cd.push(v)
-                  }
-                });
-                //setStateでALLDATAの中身を書き換える
-                this.setState({ ALLDATA: Uline_cd })
-                  this.state.ALLDATA.map((v, i) => {
-                  if(v.申請状況 === "済"){
-                    Uline_cd.push(v)
-                  }
-                  });
-                  this.setState({ ALLDATA: Uline_cd })
-                
-              }}>未申請</Dropdown.Item>
-              {/* 　 申請済の人を上に並べる */}
-　　　　　　　　　<Dropdown.Item herg="#/action-2" onClick={() =>{
-                
-                //新しい配列を用意する
-                let Dline_cd = []
-                //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
-                this.state.ALLDATA.map((v, i) => {
-                  if(v.申請状況 === "済"){
-                    Dline_cd.push(v)
-                  }
-                });
-                //setStateでALLDATAの中身を書き換える
-                this.setState({ ALLDATA: Dline_cd })
+                <Dropdown.Item
+                  herg="#/action-2"
+                  onClick={() => {
+                    //新しい配列を用意する
+                    let Dline_cd = [];
+                    //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと、値とキー)
+                    this.state.ALLDATA.map((v, i) => {
+                      if (v.Situation === "済") {
+                        Dline_cd.push(v);
+                      }
+                    });
+                    //setStateでALLDATAの中身を書き換える
+                    this.setState({ ALLDATA: Dline_cd });
 
-                  this.state.ALLDATA.map((v, i) => {
-                  if(v.申請状況 === "未"){
-                    Dline_cd.push(v)
+                    this.state.ALLDATA.map((v, i) => {
+                      if (v.Situation === "未") {
+                        Dline_cd.push(v);
+                      }
+                    });
+                    this.setState({ ALLDATA: Dline_cd });
+                  }}
+                >
+                  申請済
+                </Dropdown.Item>
+                {/* 社員IDで昇順で並べ替える */}
+                <Dropdown.Item
+                  herg="#/action-2"
+                  onClick={() => {
+                    //JSONデータを格納するための配列を用意する
+                    let SyainTmpData = this.state.DEFAULTDATA;
 
-                  }
-                  });
-                  this.setState({ ALLDATA: Dline_cd })
-                
-              }}>申請済</Dropdown.Item>
+                    //ソート用のメソッド
+                    function sortIdAsc(a, b) {
+                      // 条件
+                      return b.EmployeeId - a.EmployeeId;
+                    }
+                    // メソッド呼び出し
+                    SyainTmpData.sort(sortIdAsc);
+                    console.log(SyainTmpData);
+                    // ALLDATAにセット
+                    this.setState({ ALLDATA: SyainTmpData });
+                  }}
+                >
+                  社員ID(昇順)
+                </Dropdown.Item>
+                {/* 社員IDで降順で並べ替える */}
+                <Dropdown.Item
+                  herg="#/action-2"
+                  onClick={() => {
+                    //JSONデータを格納するための配列を用意する
+                    let SyainTmpData = this.state.DEFAULTDATA;
 
-              {/* 社員IDで昇順で並べ替える */}
-              <Dropdown.Item herg="#/action-2" onClick={() =>{
-                
-                //新しい配列を用意する
-                let SyainTmpData = this.state.DEFAULTDATA
-                let USyain_id = []
-                //マップを使ってALLDATAを読み込む(vが項目ごとでiがデータごと)
-                this.state.DEFAULTDATA.map((v, i) => {
-                  console.log(v.id[1])
-                });
-                
-              }}>
-              
-              社員ID(昇順)</Dropdown.Item>
+                    function sortIdAsc(a, b) {
+                      return a.EmployeeId - b.EmployeeId;
+                    }
 
-              {/* 社員IDで降順で並べ替える */}
-              <Dropdown.Item>
-              
-              社員ID(降順)</Dropdown.Item>
+                    SyainTmpData.sort(sortIdAsc);
+                    this.setState({ ALLDATA: SyainTmpData });
+                  }}
+                >
+                  社員ID(降順)
+                </Dropdown.Item>
+                {/* 社員名で昇順で並べ替える */}
+                <Dropdown.Item
+                  herg="#/action-2"
+                  onClick={() => {
+                    //JSONデータを格納するための配列を用意する
+                    let SyainTmpData = this.state.DEFAULTDATA;
 
-              {/* 社員名で昇順で並べ替える */}
-              <Dropdown.Item>
-              
-              社員名(昇順)</Dropdown.Item>
+                    function sortIdAsc(a, b) {
+                      if (a.Hurigana > b.Hurigana) {
+                        return 1;
+                      } else {
+                        return -1;
+                      }
+                    }
+                    SyainTmpData.sort(sortIdAsc);
+                    this.setState({ ALLDATA: SyainTmpData });
+                  }}
+                >
+                  社員名(昇順)
+                </Dropdown.Item>
+                {/* 社員名で降順で並べ替える */}
+                <Dropdown.Item
+                  onClick={() => {
+                    //JSONデータを格納するための配列を用意する
+                    let SyainTmpData = this.state.DEFAULTDATA;
 
-              {/* 社員名で降順で並べ替える */}
-              <Dropdown.Item>
-              
-              社員名(降順)</Dropdown.Item>
+                    function sortIdAsc(a, b) {
+                      if (a.Hurigana < b.Hurigana) {
+                        return 1;
+                      } else {
+                        return -1;
+                      }
+                    }
+                    SyainTmpData.sort(sortIdAsc);
+                    this.setState({ ALLDATA: SyainTmpData });
+                  }}
+                >
+                  社員名(降順)
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
-            </Dropdown.Menu>
-          </Dropdown>
-          
             <OverlayTrigger
-                key={"top"}
-                placement={"top"}
-                overlay={
-                  <Tooltip id={`tooltip-${"top"}`}>
-                    未申請の人にメッセージを送信
-                  </Tooltip>
-                }
-              >
+              key={"top"}
+              placement={"top"}
+              overlay={
+                <Tooltip id={`tooltip-${"top"}`}>
+                  未申請の人にメッセージを送信
+                </Tooltip>
+              }
+            >
               <Button
-                className = "buttonContent"
+                className="buttonContent"
                 variant="outline-secondary"
                 onClick={this.reportApplicationMsg}
               >
@@ -259,7 +306,7 @@ export default class ExpenseMangament extends React.Component {
               }
             >
               <Button
-                className = "buttonContent"
+                className="buttonContent"
                 variant="outline-secondary"
                 onChange={this.handleSearchText}
               >
@@ -270,7 +317,7 @@ export default class ExpenseMangament extends React.Component {
             <InputGroup className="inputTextGroup">
               <FormControl
                 className="inputText"
-                placeholder="search 社員名"
+                placeholder="社員名検索"
                 onChange={this.handleSearchText}
               />
               {/* <InputGroup.Append>
@@ -292,11 +339,10 @@ export default class ExpenseMangament extends React.Component {
                         onChange={_self.isAllCheck.bind(_self)}
                         checked={this.state.isAllCheck || ""}
                       />
-
                     </td>
-                    <td>ID</td>
+                    <td>社員ID</td>
                     <td>申請状況</td>
-                    <td>申請状況</td>
+                    <td>社員名</td>
                     <td>更新日</td>
                     <td>駅区間</td>
                     <td>定期期間</td>
@@ -304,39 +350,35 @@ export default class ExpenseMangament extends React.Component {
 
                   {this.state.ALLDATA.length
                     ? this.state.ALLDATA.map(function (item, index) {
-                      //申請状況を代入
-                      let isColorCheck = item.申請状況;
-                      var fontColor = "";
-                      if(isColorCheck === "未"){
-                        fontColor = 'red';
-                      }
+                        //Situationを代入
+                        let isColorCheck = item.Situation;
+                        var fontColor = "";
+                        if (isColorCheck === "未") {
+                          fontColor = "red";
+                        }
 
-                      //未申請の人だけを赤くする
-                      return (
-                        <tr
-                        style = {{ color: fontColor }}
-                        key={index}
-                        >
-                          <td>
-                            <input
-                              className="checkBoxContent"
-                              type="checkbox"
-                              onChange={_self.checkThis.bind(_self, item)}
-                              checked={item.checked || ""}
-                            />
-                          </td>
-                          <td>00{item.id}</td>
-                          <td>{item.申請状況}</td>
-                          <td>{item.社員名}</td>
-                          <td>{item.更新日}</td>
-                          <td>{item.駅区間}</td>
-                          <td>{item.定期期間}</td>
-                        </tr>
-                      );
-                     {
-                      } 
-                    }
-                  )
+                        //未申請の人だけを赤くする
+                        return (
+                          <tr style={{ color: fontColor }} key={index}>
+                            <td>
+                              <input
+                                className="checkBoxContent"
+                                type="checkbox"
+                                onChange={_self.checkThis.bind(_self, item)}
+                                checked={item.checked || ""}
+                              />
+                            </td>
+                            <td>00{item.EmployeeId}</td>
+                            <td>{item.Situation}</td>
+                            <td>{item.EmployeeName}</td>
+                            <td>{item.UpdataDay}</td>
+                            <td>{item.StationArea}</td>
+                            <td>{item.PassSeason}</td>
+                          </tr>
+                        );
+                        {
+                        }
+                      })
                     : null}
                 </tbody>
               </Table>
@@ -346,6 +388,5 @@ export default class ExpenseMangament extends React.Component {
         </div>
       </>
     );
-    
   }
 }
