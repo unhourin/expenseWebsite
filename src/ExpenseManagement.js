@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { withRouter } from 'react-router';
 import {
   Row,
   Col,
@@ -54,18 +55,6 @@ export default class ExpenseMangament extends React.Component {
       ALLDATA: DATA,
     });
   }
-
-  // runSelect = () => {
-  //   this.state.ALLDATA = this.state.DEFAULTDATA;
-  //   var temp = this.state.ALLDATA.filter((item) => {
-  //     return item.EmployeeName.toUpperCase().includes(this.state.searchText);
-  //   });
-
-  //   this.setState({
-  //     // 画面更新
-  //     ALLDATA: temp,
-  //   });
-  // };
 
   isAllCheck() {
     if (this.state.isAllCheck === false) {
@@ -320,19 +309,14 @@ export default class ExpenseMangament extends React.Component {
                 placeholder="社員名検索"
                 onChange={this.handleSearchText}
               />
-              {/* <InputGroup.Append>
-                <Button variant="outline-secondary" onClick={this.runSelect} className="inputButton">
-                  検索
-                </Button>
-              </InputGroup.Append> */}
+
             </InputGroup>
 
-            <div className="tableTextArea">
-              <Table>
-                <thead></thead>
-                <tbody>
-                  <tr className="trContent">
-                    <td>
+            <div>
+              <table>
+              <tr valign="bottom">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <td  width="85">
                       <input
                         className="checkBoxContent"
                         type="checkbox"
@@ -340,14 +324,18 @@ export default class ExpenseMangament extends React.Component {
                         checked={this.state.isAllCheck || ""}
                       />
                     </td>
-                    <td>社員ID</td>
-                    <td>申請状況</td>
-                    <td>社員名</td>
-                    <td>更新日</td>
-                    <td>駅区間</td>
-                    <td>定期期間</td>
+                    <td width="120">社員ID</td>
+                    <td width="150">申請状況</td>
+                    <td width="180">社員名</td>
+                    <td width="215">更新日</td>
+                    <td width="220">駅区間</td>
+                    <td width="100">定期期間</td>
                   </tr>
+              </table>
+            </div>
 
+            <div className="tableTextArea">
+              <Table>
                   {this.state.ALLDATA.length
                     ? this.state.ALLDATA.map(function (item, index) {
                         //Situationを代入
@@ -359,7 +347,20 @@ export default class ExpenseMangament extends React.Component {
 
                         //未申請の人だけを赤くする
                         return (
-                          <tr style={{ color: fontColor }} key={index}>
+                          
+                          <tr key={index}>
+                            <Button 
+                            variant="outline-dark" 
+                            style={{ color: fontColor }}
+
+                            // //ページ遷移のための命令
+                            // onClick={() => {
+                            //   function clickChange(){
+                            //     this.props.router.push('/Demo');
+                            //   }
+                            //   clickChange()
+                            // }}
+                            >
                             <td>
                               <input
                                 className="checkBoxContent"
@@ -368,23 +369,25 @@ export default class ExpenseMangament extends React.Component {
                                 checked={item.checked || ""}
                               />
                             </td>
-                            <td>00{item.EmployeeId}</td>
-                            <td>{item.Situation}</td>
-                            <td>{item.EmployeeName}</td>
-                            <td>{item.UpdataDay}</td>
-                            <td>{item.StationArea}</td>
-                            <td>{item.PassSeason}</td>
-                          </tr>
+                            <td width="130">00{item.EmployeeId}</td>
+                            <td width="130">{item.Situation}</td>
+                            <td width="150">{item.EmployeeName}</td>
+                            <td width="200">{item.UpdataDay}</td>
+                            <td width="250">{item.StationArea}</td>
+                            <td width="200">{item.PassSeason}</td>
+                            </Button>
+                            </tr>
+                          
                         );
                         {
                         }
                       })
                     : null}
-                </tbody>
+                
               </Table>
             </div>
           </div>
-          <Row style={{ backgroundColor: "#FFFFFF" }}>もし区切りあったら</Row>
+          {/* <Row style={{ backgroundColor: "#FFFFFF" }}>もし区切りあったら</Row> */}
         </div>
       </>
     );
