@@ -1,6 +1,4 @@
-import React, { useReducer } from "react";
-import { withRouter } from "react-router";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
 import {
   Row,
   Col,
@@ -13,11 +11,10 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import moment from "moment";
-
-import Popup from "react-popup";
+import ApiUrl from "../../Api/ApiUrl";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "./ExpenseManagement.css";
+import "./css/ExpenseManagement.css";
 export default class ExpenseMangament extends React.Component {
   state = {
     DEFAULTDATA: [],
@@ -44,11 +41,12 @@ export default class ExpenseMangament extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://127.0.0.1:3001/expense")
+      .get(ApiUrl.getExpenseSubmissonSituation)
       .then((response) => {
         return response.data;
       })
       .then((data) => {
+        console.log(data);
         data.forEach((item) => {
           let name = item.family_name + item.first_name;
           item.employee_name = name;
@@ -138,8 +136,7 @@ export default class ExpenseMangament extends React.Component {
   };
 
   reportApplicationMsg = () => {
-    let url = "http://127.0.0.1:3001/expense/pushMessage";
-    fetch(url, {
+    fetch(ApiUrl.pushNotifications, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -254,8 +251,7 @@ export default class ExpenseMangament extends React.Component {
                     <Dropdown.Toggle
                       className="expenseDropDown"
                       variant="outline-secondary"
-                      id="dropdown-basic"
-                    >
+                      id="dropdown-basic">
                       絞り込み
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -263,7 +259,6 @@ export default class ExpenseMangament extends React.Component {
                         未提出
                       </Dropdown.Item>
                       <Dropdown.Item onClick={_self.sortReported}>
-                        {" "}
                         提出済み
                       </Dropdown.Item>
                       <Dropdown.Item onClick={_self.sortNotConfirmed}>
@@ -292,13 +287,11 @@ export default class ExpenseMangament extends React.Component {
                       <Tooltip id={`tooltip-${"top"}`}>
                         未申請の人にメッセージを送信
                       </Tooltip>
-                    }
-                  >
+                    }>
                     <Button
                       className="messageButton"
                       variant="outline-secondary"
-                      onClick={() => this.reportApplicationMsg()}
-                    >
+                      onClick={() => this.reportApplicationMsg()}>
                       メッセージ送信
                     </Button>
                   </OverlayTrigger>
@@ -312,13 +305,11 @@ export default class ExpenseMangament extends React.Component {
                       <Tooltip id={`tooltip-${"top"}`}>
                         チェック済の請求書を印刷
                       </Tooltip>
-                    }
-                  >
+                    }>
                     <Button
                       className="messageButton"
                       variant="outline-secondary"
-                      onClick={this.runPrint}
-                    >
+                      onClick={this.runPrint}>
                       チェック済印刷
                     </Button>
                   </OverlayTrigger>
@@ -356,6 +347,13 @@ export default class ExpenseMangament extends React.Component {
                   <tbody>
                     {this.state.ALLDATA.length
                       ? this.state.ALLDATA.map(function (item, index) {
+                          let reportMsg = "未提出";
+                          if (item.expense_id != null) {
+                            reportMsg = "提出済み";
+                          }
+                          if (item.confirmed === -1) {
+                            reportMsg = "差し戻し中";
+                          }
                           return (
                             // <Link to='/details'>
                             <tr
@@ -365,21 +363,18 @@ export default class ExpenseMangament extends React.Component {
                               key={index}
                               style={{ cursor: "pointer" }}
                               onClick={() => {
-                                _self.props.history.push(
-                                  "/details/" +
-                                    item.employee_id +
-                                    "/" +
-                                    item.employee_name +
-                                    "/" +
-                                    item.expense_id
-                                );
-                              }}
-                            >
+                                if (item.expense_id !== null)
+                                  _self.props.history.push(
+                                    "/details/" +
+                                      item.employee_id +
+                                      "/" +
+                                      item.employee_name
+                                  );
+                              }}>
                               <td
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                }}
-                              >
+                                }}>
                                 <input
                                   type="checkbox"
                                   onChange={_self.checkThis.bind(_self, item)}
@@ -388,11 +383,7 @@ export default class ExpenseMangament extends React.Component {
                               </td>
                               <td>{item.employee_id}</td>
                               <td>{item.employee_name}</td>
-                              <td>
-                                {item.expense_id != null
-                                  ? "提出済み"
-                                  : "未提出"}
-                              </td>
+                              <td>{reportMsg}</td>
                               <td>
                                 {item.confirmed === 1 ? "承認済み" : "未承認"}
                               </td>

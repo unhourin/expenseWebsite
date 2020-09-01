@@ -1,0 +1,550 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap);
+
+body{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.detailsHeader{
+    background: #011640 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
+}
+
+.detailsTitle {
+    margin: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 24px;
+    color: #ffffff;
+    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+}
+
+.detailsDropDownYear{
+    margin: 0px;
+    margin-top: 16px;
+    background-color: #ffffff;
+    color:  #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 1px #00000029;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px 24px 8px 24px;
+    float: left;
+}
+
+.detailsDropDownMonth{
+    margin: 0px;
+    margin-top: 16px;
+    background-color: #ffffff;
+    color:  #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 1px #00000029;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px 24px 8px 24px;
+}
+
+.claimTitle {
+    color: #011640;
+    margin: 0;
+}
+
+.expenseDetailsArea{
+    margin-top: 16px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    background-color: hsl(220, 0%, 98%);
+    border: 1px solid;
+    border-color: hsl(0, 0%, 71%);
+}
+
+.detailsExpenseTitle{
+    /* color: #011640; */
+    color: hsl(220, 0%, 54%);
+    font-size: 20px;
+}
+
+.seesonPassTitle{
+    font-size: 20px;
+    color: hsl(220, 0%, 54%);
+}
+
+.detailsExpenseEmployee{
+    text-align: left;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.detailsExpenseEmployeeLeft{
+    text-align: left;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+    padding-left: 30px;
+}
+
+.detailsExpenseDay{
+    text-align: right;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px; 
+}
+
+.detailsRow{
+    margin-bottom: 8px;
+}
+
+.detailsBoderCol{
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-top: 1px solid;
+    border-color: hsl(0, 0%, 71%);
+}
+
+.detailsLeftCol{
+    text-align: left;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.detailsCenterCol{
+    text-align: center;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.detailsExpenseContentTitle{
+    text-align: left;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.detailsExpenseContentTitleLeft{
+    text-align: left;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+    padding-left: 30px;
+}
+
+.detailsExpenseContent{
+    text-align: left;
+    color: hsl(220, 95%, 13%);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.detailsExpenseContentLeft{
+    text-align: left;
+    color: hsl(220, 95%, 13%);
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 30px;
+}
+
+.detailsExpenseStatementTitle{
+    text-align: right;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.detailsExpenseStatementTitleLeft{
+    text-align: right;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+    padding-left: 30px;
+}
+
+.detailsExpenseStatement{
+    text-align: right;
+    color: hsl(220, 95%, 13%);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.detailsRightCol{
+    text-align: right;
+    color: hsl(220, 0%, 54%);
+    font-size: 16px;
+}
+
+.expenseEvidenceArea{
+    margin-top: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: hsl(220, 0%, 98%);
+    border: 1px solid;
+    border-color: hsl(0, 0%, 71%);
+}
+
+.detailsEvidenceContent{
+    text-align: left;
+    color: hsl(220, 95%, 13%);
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 30px;
+}
+
+.evideceImg{
+    text-align: center;
+}
+
+.imgSize{
+    margin: 0;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: 150px;
+    width: 200px;
+}
+
+.detailsButtonGroup{
+    margin: 0;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.buttonReturnCol{
+    text-align: left;
+}
+
+.buttonHistory{
+    margin-top: 16px;
+    background-color:  #ffffff;;
+    color: #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+    padding: 8px 58px 8px 58px;
+}
+
+.buttonReturn{
+    background-color:  #011640;;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+    padding: 8px 58px 8px 58px;
+}
+
+.buttonReturn:hover{
+    background-color:  #011640;;
+    color: #ffffff;
+}
+
+.buttonRemandCol{
+    text-align: center;
+}
+
+.buttonRemand{
+    background-color: #ffffff;
+    color: #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+    padding: 8px 48px 8px 48px;
+}
+
+.buttonRemand:hover{
+    background-color: #ffffff;
+    color: #011640;
+}
+
+.buttonApprovalCol{
+    text-align: right;
+}
+
+.buttonApproval{
+    background-color:  #F2901F;
+    color: #011640;
+    border: 1px solid #F2901F;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+    padding: 8px 58px 8px 58px;
+}
+
+.buttonApproval:hover{
+    background-color:  #F2901F;
+    color: #011640;
+}
+
+/*
+.detailsTitle {
+    padding: 8px;
+    font-size: 32px;
+    color: #ffffff;
+    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+}
+
+.detailsMain{
+    height: auto;
+    width: 1000px;
+    margin: auto;
+    
+}
+
+.detailsMainArea{
+    height: auto;
+    width: 632px;
+    margin: auto;
+    margin-top: 32px;
+}
+
+.detailsDropDown{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+.detailsDropDownContent{
+    height: 48px;
+    width: 176px;
+    background-color: #011640;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+}
+
+.detailsdropDownContent:hover{
+    background-color: #011640;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    text-align: center;
+}
+
+.claimTitleArea{
+    margin-top: 32px;
+    margin-bottom: 13px;
+}
+
+.claimTitle{
+    height: 27px;
+    width: 140px;
+    font-size: 24px;
+    color: #011640;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.claimSheetArea{
+    height: auto;
+    width: 632px;
+    margin: auto;
+    border: 1px solid #011640;
+}
+
+.claimEmployeeArea{
+    margin-top: 24px;
+    margin-left: 48px;
+    margin-bottom: 0px;
+    width: 372px;
+    float: left;
+}
+
+.claimEmployeeID{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+.claimEmployeeName{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+.claimDayArea{
+    margin-top: 24px;
+}
+
+.claimDay{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.detailsLine{
+    clear: both;
+    border: 0.1px solid #95A1B9;
+    margin: auto;
+    width: 560px;
+}
+
+.detailsPassArea{
+    margin-top: 13px;
+    margin-left: 48px;
+    margin-bottom: 0px;
+    width: 470px;
+    float: left;
+}
+
+.detailsPassTitle{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+
+.detailsPassRoute{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+.detailsPassMoneyArea{
+    margin-top: 56px;
+}
+
+.detailsPassMoney{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.detailsOtherArea{
+    width: 470px;
+    margin-top: 13px;
+    margin-left: 48px;
+    margin-bottom: 0px;
+    float: left;
+}
+
+.detailsOtherTitle{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+.detailsOther{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    margin-bottom: 13px;
+}
+
+.detailsOtherMoneyArea{
+    margin-top: 59px;
+}
+
+.detailsOtherMoney{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.detailsTotalArea{
+    margin-right: 40px;
+    margin-bottom: 21px;
+}
+
+.detailsTotal{
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+    text-align: right;
+}
+
+.evidenceTitleArea{
+    margin-top: 32px;
+    margin-bottom: 13px;
+}
+
+.evidenceTitle{
+    height: 27px;
+    width: 140px;
+    font-size: 24px;
+    color: #011640;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.evidenceSheetArea{
+    height: auto;
+    width: 632px;
+    margin: auto;
+    border: 1px solid #011640;
+}
+
+.evidenceSheetTitleArea{
+    width: 472px;
+    margin: auto;
+}
+
+.evidenceSheetTitle{
+    margin-top: 8px;
+    color: #011640;
+    font-size: 24px;
+    text-shadow: 0px 1px 1px #00000029;
+}
+
+.evidenceImg{
+    height: 184px;
+    width: 290px;
+    margin-top: 48px;
+    margin-left: 91px;
+    margin-bottom: 32px;
+}
+
+.buttonGroup{
+    margin-top: 32px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.buttonReturn{
+    height: 48px;
+    width: 156px;
+    background-color:  #011640;;
+    color: #ffffff;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+}
+
+.buttonReturn:hover{
+    background-color:  #011640;;
+    color: #ffffff;
+}
+
+.buttonRemand{
+    height: 48px;
+    width: 156px;
+    background-color: #ffffff;
+    color: #011640;
+    border: 1px solid #011640;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+}
+
+.buttonRemand:hover{
+    background-color: #ffffff;
+    color: #011640;
+}
+
+.buttonApproval{
+    height: 48px;
+    width: 156px;
+    background-color:  #F2901F;
+    color: #011640;
+    border: 1px solid #F2901F;
+    border-radius: 28px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+}
+
+.buttonApproval:hover{
+    background-color:  #F2901F;
+    color: #011640;
+}
+
+.detailsFooter{
+    height: 64px;
+    background: #011640 0% 0% no-repeat padding-box;
+    box-shadow: 0px -3px 6px rgba(0,0,0,0.5);
+} */
